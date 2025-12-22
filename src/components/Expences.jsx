@@ -166,7 +166,7 @@ const Expences = () => {
         </div>
         {/* {+ Add expense} */}
         <button
-          // disabled={currentDay !== dateKey}
+          disabled={currentDay !== dateKey}
           onClick={handleAdd}
           className={`w-full py-2 mt-1 rounded
     ${
