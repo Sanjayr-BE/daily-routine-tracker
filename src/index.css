@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+body {
+  background-color: #111827;
+  width: 100%;
+  height: 100vh;
+  color: white;
+  position: relative;
+}
+
+
+
+.inputStyle {
+  @apply bg-[#374151] w-full px-4 py-2 rounded-sm
+              font-medium text-[0.9rem]
+              border-2 border-[#4B5563]
+              focus:border-[#3B82F6]
+              focus:ring-2 focus:ring-[#3B82F6]/10
+              outline-none transition;
+}
+
+.box_Hover:hover{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
