@@ -124,7 +124,7 @@ const {selectedDay}=useContext(DateContext)
   // {return }
   return (
     <div>
-      <form className="border border-[#374151] rounded-lg p-4">
+      <form className="border-2  border-[var(--border-main)]  rounded-lg p-4">
         <div className="sm:flex gap-5">
           <div className="flex-1">
             <label className="block mb-2 font-medium">Meal Type</label>
@@ -167,7 +167,7 @@ const {selectedDay}=useContext(DateContext)
         <div className="flex-1">
           <button
             onClick={handleAdd}
-            className="cursor-pointer w-full bg-blue-500 hover:bg-blue-600 text-white py-1.5 rounded"
+            className="cursor-pointer w-full bg-[var(--click-btn)] hover:bg-blue-600 text-white py-1.5 rounded"
           >
             + Add Meal
           </button>
@@ -185,7 +185,7 @@ const {selectedDay}=useContext(DateContext)
           <div
             key={meal.id}
             className={`border-2 rounded-lg ${
-              meal.checked ? "border-green-500" : "border-[#2563EB]"
+              meal.checked ? "border-green-500" : "border-[var(--click-btn)]"
             } p-4 mt-5 box_Hover`}
           >
             <div className="flex justify-between">
@@ -207,7 +207,7 @@ const {selectedDay}=useContext(DateContext)
               <div className="flex items-center gap-3 ">
                 <span
                   className={`px-2 py-1 font-medium text-[0.8rem] rounded-2xl
-                ${meal.checked ? "bg-green-500" : "bg-[#3B82F6]"}
+                ${meal.checked ? "bg-green-500" : "bg-[var(--click-btn)]"}
                 `}
                 >
                   {meal.checked ? "Completed" : "Pending"}

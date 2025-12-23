@@ -128,7 +128,7 @@ const Expences = () => {
   // ---------------- UI ----------------
   return (
     <div>
-      <form className="border border-[#374151] rounded-lg p-4">
+      <form className="border-2  border-[var(--border-main)]  rounded-lg p-4">
         <div className="sm:flex gap-5">
           <div className="flex-1">
             <label className="block mb-2 font-medium">Amount (₹)</label>
@@ -166,13 +166,13 @@ const Expences = () => {
         </div>
         {/* {+ Add expense} */}
         <button
-          // disabled={currentDay !== dateKey}
+          disabled={currentDay !== dateKey}
           onClick={handleAdd}
-          className={`w-full py-2 mt-1 rounded
+          className={`w-full py-2 mt-1 rounded font-medium
     ${
       currentDay === dateKey
-        ? "bg-blue-500 hover:bg-blue-600 cursor-pointer"
-        : "bg-blue-300/70 cursor-not-allowed"
+        ? "bg-[var(--click-btn)] hover:bg-[var(--hover-btn)] cursor-pointer"
+        : "bg-[var(--cursor-non)] cursor-not-allowed"
     }
   `}
         >
@@ -182,10 +182,10 @@ const Expences = () => {
 
       {/* {Expences Total} */}
 
-      <div className="border border-[#374151] rounded-lg p-2 sm:p-4 mt-5 flex justify-between">
+      <div className="border-2 border-[var(--border-main)]  rounded-lg p-2 sm:p-4 mt-5 flex justify-between">
         <span className="font-bold">Daily Total</span>
 
-        <span className="font-bold text-xl">₹ {Daily_Total_Expences}</span>
+        <span className="font-bold text-xl text-[#16A34A]">₹ {Daily_Total_Expences}</span>
       </div>
 
       {/* ---------------- LIST ---------------- */}
@@ -195,19 +195,19 @@ const Expences = () => {
         filteredExpences.map((e) => (
           <div
             key={e.id}
-            className="border-2 border-blue-500 rounded-lg p-2 sm:p-3 mt-5 box_Hover"
+            className="border-2 border-[var(--click-btn)] rounded-lg p-2 sm:p-3 mt-5 box_Hover"
           >
             <div className="flex justify-between gap-2 flex-wrap  ">
               <div className="md:flex-1 flex-2 p-3 relative ">
-                <span className="font-bold px-2 rounded text-green-300">
+                <span className="font-bold text-[1.2rem] px-2 rounded text-[#16A34A]">
                   ₹ {e.amount}
                 </span>
-                <span className="text-bold absolute right-0 sm:right-7 md:left-25">
+                <span className="text-[#9CA3AF] mt-1 font-bold absolute right-0 sm:right-7 md:left-25">
                   {e.time}
                 </span>
               </div>
 
-              <div className="rounded-lg bg-[#374151] md:order-0 order-3 md:flex-2 w-full p-3 ">
+              <div className="rounded-lg bg-[#374151] md:order-0 order-3 md:flex-2 w-full p-4 ">
                 <p className="text-[#c4c9d1] text-[0.9rem] font-medium text-center">
                   {e.description}
                 </p>

@@ -126,7 +126,7 @@ const Routine = () => {
   // {return }
   return (
     <div>
-      <form className="border border-[#374151] rounded-lg p-4">
+      <form className="border-2  border-[var(--border-main)] rounded-lg p-4">
         <div className="sm:flex gap-5">
           <div className="flex-1">
             <label className="block mb-2 font-medium">Task</label>
@@ -154,18 +154,19 @@ const Routine = () => {
           </div>
         </div>
 
-        {/* {+Add Meal} */}
+        {/* {+Add Routine} */}
         <div className="flex-1 font-medium">
          <button
         disabled={currentDay > dateKey}
           onClick={handleAdd}
            className={`w-full py-2 mt-1 rounded
     ${currentDay > dateKey
-      ? "bg-blue-300/70 cursor-not-allowed":"bg-blue-500 hover:bg-blue-600 cursor-pointer"
+      ? 
+      "bg-[var(--cursor-non)] cursor-not-allowed":"bg-[var(--click-btn)] hover:bg-[var(--hover-btn)] cursor-pointer"
        }
   `}
         >
-          {currentDay > dateKey ? "Access Denied" : "+ Add Expense"}
+          {currentDay > dateKey ? "Access Denied" : "+ Add Routine"}
         </button>
         </div>
       </form>
@@ -181,7 +182,7 @@ const Routine = () => {
           <div
             key={r.id}
             className={`border-2 rounded-lg ${
-              r.checked ? "border-green-500" : "border-[#2563EB]"
+              r.checked ? "border-green-500" : "border-[var(--click-btn)]"
             } p-4 mt-5 box_Hover`}
           >
             <div className="flex justify-between gap-2 flex-wrap ">
@@ -204,7 +205,7 @@ const Routine = () => {
                 <p
                   className={`text-[#c4c9d1] font-medium text-center  ${
                     r.checked &&
-                    "line-through decoration-2 decoration-[#4c586e]"
+                    "line-through decoration-1 decoration-[#4c586e]"
                   }`}
                 >
                   {r.task}
@@ -214,7 +215,7 @@ const Routine = () => {
               <div className=" p-3 flex-1 relative ">
                 <span
                   className={`px-2 py-1 font-medium text-[0.8rem] rounded-2xl absolute right-10 top-3
-                ${r.checked ? "bg-green-500" : "bg-[#3B82F6]"}
+                ${r.checked ? "bg-green-500" : "bg-[var(--click-btn)]"}
                 `}
                 >
                   {r.checked ? "Completed" : "Pending"}

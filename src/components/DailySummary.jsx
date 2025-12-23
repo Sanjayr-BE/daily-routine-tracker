@@ -7,7 +7,7 @@ const DailySummary = () => {
 
   return (
     <div>
-      <div className="border bg-[#1F2937]  border-[#394b65] rounded-lg p-3 sm:p-6  ">
+      <div className="bg-[var(--primary-bg)] rounded-lg p-3 sm:p-6 ">
         <p className="font-bold text-[1.2rem]">Daily Summary</p>
         <p className="font-medium text-[1.1rem] mt-5">{CurrentDay}</p>
         <p className="font-medium text-[0.9rem] mt-2 text-[#9CA3AF]">
@@ -17,7 +17,7 @@ const DailySummary = () => {
           className={`mt-2 font-bold text-[0.7rem]
         ${
           dayStatus === "Today"
-            ? "bg-[#10B981]"
+            ? "bg-[#16A34A]"
             : dayStatus === "Past"
             ? "bg-red-500"
             : "bg-yellow-400"

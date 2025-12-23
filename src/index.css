@@ -1,24 +1,59 @@
 @import "tailwindcss";
 
+.dark {
+  --main-bg: #111827;
+  --main-text: #ffffff;
+
+  --primary-bg: #1f2937;
+
+  --border-main: #394b65;
+  --click-btn: #3b82f6;
+
+  --input-bg: #374151;
+  --hover-btn: #155dfc;
+
+  --hover-drill: #29344b;
+
+  --cursor-non: #6f8fd3;
+
+  --circle-border: #394b65;
+}
+.light {
+  --main-bg: #ffffff;
+  --main-text: rgb(0, 0, 0);
+
+  --primary-bg: #f7ede6;
+
+  --border-main: #95aac8;
+  --click-btn: #e1762f;
+
+  --cursor-non: #ddb295;
+
+  --input-bg: #bdb2aa;
+  --hover-btn: #f0680d;
+
+  --hover-drill:#ebc6ac;
+
+  --circle-border: #e1762f;
+}
+
 body {
-  background-color: #111827;
+  background-color: var(--main-bg);
   width: 100%;
   height: 100vh;
-  color: white;
+  color: var(--main-text);
   position: relative;
 }
 
-
-
 .inputStyle {
-  @apply bg-[#374151] w-full px-4 py-2 rounded-sm
+  @apply bg-[var(--input-bg)] w-full px-4 py-2 rounded-sm
               font-medium text-[0.9rem]
-              border-2 border-[#4B5563]
-              focus:border-[#3B82F6]
-              focus:ring-2 focus:ring-[#3B82F6]/10
-              outline-none transition;
+              border-2 border-[var(--border-main)]
+              focus:border-[var(--click-btn)]
+              focus:ring-3 focus:ring-[#3B82F6]/20
+              outline-none transition ease-in-out duration-300;
 }
 
-.box_Hover:hover{
+.box_Hover:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

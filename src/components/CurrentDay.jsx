@@ -18,7 +18,7 @@ const CurrentDay = () => {
   };
 
   return (
-    <div className="border bg-[#1F2937] border-[#394b65] rounded-lg p-3 sm:p-4 flex justify-center gap-1 sm:gap-2">
+    <div className="bg-[var(--primary-bg)] rounded-lg p-3 sm:p-4 flex justify-center gap-1 sm:gap-2">
       {days.map((day, index) => {
         const isToday = index === todayIndex;
         const isSelected = index === selectedIndex;
@@ -27,19 +27,19 @@ const CurrentDay = () => {
           <span
             key={index}
             onClick={() => handleDay(index)}
-            className={`border border-[#394b65] font-medium
+            className={`border border-[var(--circle-border)] font-medium
               w-8 h-8 sm:w-10 sm:h-10
               flex items-center justify-center
               rounded-full cursor-pointer
               transition-all duration-300
               ${
                 isSelected && isToday
-                  ? "bg-[#10B981] text-black" // Selected Today (Dark Green)
+                  ? "bg-[#16A34A] text-black" // Selected Today (Dark Green)
                   : isToday
                   ? "bg-green-500/40 border-green-500" // Today (Light Green)
                   : isSelected
-                  ? "bg-blue-500 text-white" // Selected Day
-                  : "text-white hover:border-[#3B82F6] hover:bg-[#362F31]"
+                  ? "bg-[var(--click-btn)] text-white" // Selected Day
+                  : "text-[var(--main-text)] hover:text-white hover:border-[var(--click-btn)] hover:bg-[#362F31]"
               }`}
           >
             {day}

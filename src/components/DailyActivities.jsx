@@ -4,10 +4,10 @@ import Expences from "./Expences";
 import Routine from "./Routine";
 
 const DailyActivities = () => {
-  const [activityTab, setActivityTab] = useState("Meals");
+  const [activityTab, setActivityTab] = useState("Expences");
 
   return (
-    <div className="border-2 border-[#1F2937] rounded-lg bg-[#1F2937] p-3 sm:p-7  ">
+    <div className=" rounded-lg bg-[var(--primary-bg)] p-3 sm:p-7  ">
       <div>
         <p className="font-bold text-[1.2rem]">Daily Activities</p>
       </div>
@@ -15,14 +15,14 @@ const DailyActivities = () => {
       {/* {Daily Activities Tab Switch} */}
       <div className="mt-6">
         <div
-          className="border bg-[#1F2937]  border-[#394b65] rounded-lg p-1 
+          className="border-2  border-[var(--border-main)] rounded-lg bg-[var(--primary-bg)]  p-1 
                      flex sm:flex-row flex-col gap-1"
         >
           <button
             onClick={()=>setActivityTab("Meals")}
-            className={`cursor-pointer flex-1
-              ${activityTab === "Meals" ? "bg-[#3B82F6]" : " bg-transparent"}
-              text-white py-1 rounded-md
+            className={`cursor-pointer flex-1 font-medium
+              ${activityTab === "Meals" ? "bg-[var(--click-btn)] text-white" : " bg-transparent"}
+               py-1 rounded-md
                        transition-all`}
           >
             Meals
@@ -30,18 +30,18 @@ const DailyActivities = () => {
 
           <button
             onClick={()=>setActivityTab("Expences")}
-            className={`cursor-pointer flex-1
-             ${activityTab === "Expences" ? "bg-[#3B82F6]" : " bg-transparent"}
-              text-white py-1 rounded-md
+            className={`cursor-pointer flex-1 font-medium
+             ${activityTab === "Expences" ? "bg-[var(--click-btn)] text-white" : " bg-transparent"}
+               py-1 rounded-md
                       transition-all`}
           >
             Expences
           </button>
           <button
              onClick={()=>setActivityTab("Routines")}
-            className={`cursor-pointer flex-1
-             ${activityTab === "Routines" ? "bg-[#3B82F6]" : " bg-transparent"}
-              text-white py-1 rounded-md
+            className={`cursor-pointer flex-1 font-medium
+             ${activityTab === "Routines" ? "bg-[var(--click-btn)]  text-white" : " bg-transparent"}
+              py-1 rounded-md
                       transition-all`}
           >
             Routines

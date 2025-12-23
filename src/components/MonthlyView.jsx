@@ -14,15 +14,18 @@ const MonthlyView = () => {
     const expences = getFromStorage("Expences_Data") || [];
     const monthly = getFromStorage("Monthly_Data") || [];
 
-    const completedDays = expences.filter((e) => e.date < todayKey);
+    const completedDays_Data = expences.filter((e) => e.date < todayKey);
+    const past_Delete_Data = expences.filter((e) => e.date >= todayKey);
 
-    completedDays.forEach((e) => {
+    completedDays_Data.forEach((e) => {
       if (!monthly.some((m) => m.id === e.id)) {
         monthly.push(e);
+
       }
     });
 
     saveToStorage("Monthly_Data", monthly);
+    saveToStorage("Expences_Data", past_Delete_Data);
   }, [todayKey]);
 
   // ------- MONTHLY VIEW
@@ -86,7 +89,7 @@ const MonthlyView = () => {
   if (structuredData.length === 0) {
     return (
       <div className="2xl:w-4/5 w-[94%] mx-auto mt-5 flex flex-col gap-5 h-full pb-6">
-        <div className="border h-[70vh] bg-[#1F2937] border-[#394b65] rounded-lg p-3 sm:p-6 flex justify-center items-center">
+        <div className="border-2 border-[var(--border-main)] h-[70vh] bg-[var(--primary-bg)]  rounded-lg p-3 sm:p-6 flex justify-center items-center">
           <p className=" sm:text-2xl text-[1.3rem] text-[#c4c9d1]">
             No Recordes
           </p>
@@ -99,8 +102,8 @@ const MonthlyView = () => {
     <div>
       {dropin === "Year" && (
         <div className="2xl:w-4/5 w-[94%] mx-auto mt-5 flex flex-col gap-5 h-full pb-6">
-          <div className="border bg-[#1F2937] border-[#394b65] rounded-lg p-3 sm:p-6 h-[75vh] overflow-y-auto">
-            <p className="font-bold text-lg">Monthly Expenses History</p>
+          <div className="border-2 border-[var(--border-main)] rounded-lg bg-[var(--primary-bg)] p-3 sm:p-6 h-[75vh] overflow-y-auto">
+            <p className="font-bold text-lg">Expenses History</p>
 
             {structuredData.map((m) => (
               <div key={m.monthKey} className="sm:p-4 p-3">
@@ -109,12 +112,12 @@ const MonthlyView = () => {
                     SetDropIn("Week");
                     setSelectedMonth(m);
                   }}
-                  className="hover:bg-blue-400/10 border-2 border-blue-500/10 rounded-lg p-2 sm:p-3 box_Hover cursor-pointer"
+                  className="hover:bg-[var(--hover-drill)] border-2 border-blue-500/10 rounded-lg p-2 sm:p-3 box_Hover cursor-pointer"
                 >
                   <div className="flex justify-between flex-wrap  ">
                     <div className="md:flex-1 flex-2 p-3 relative ">
                       <span className="font-bold  rounded">{m.month}</span>
-                      <span className="text-bold absolute right-0 sm:right-7 md:left-25 sm:text-blue-400">
+                      <span className="font-bold absolute right-0 sm:right-7 md:left-25 text-[var(--click-btn)]">
                         {m.year}
                       </span>
                     </div>
@@ -122,7 +125,7 @@ const MonthlyView = () => {
                     <div className="rounded-lg bg-[#374151] md:flex-1 w-full p-3 ">
                       <p className="text-[#c4c9d1] text-[0.9rem] font-medium text-center">
                         <span className="font-bold">Monthly-Total -</span>{" "}
-                        <span className="text-green-300">{`₹${m.total}.00`}</span>
+                        <span className="font-bold text-[#16A34A]">{`₹${m.total}.00`}</span>
                       </p>
                     </div>
                   </div>
@@ -138,13 +141,13 @@ const MonthlyView = () => {
       {dropin === "Week" && selectedMonth && (
         <div className="fixed inset-0 backdrop-blur-sm">
           <div
-            className="w-[90%] xl:w-[50%] max-h-[60vh] overflow-y-auto bg-[#1F2937] border-2 border-blue-500/80 rounded-lg ring-2 ring-[#3B82F6]/10
+            className="w-[90%] xl:w-[50%] max-h-[60vh] overflow-y-auto bg-[var(--primary-bg)] border-2 border-[var(--click-btn)] rounded-lg ring-2 ring-[#3B82F6]/10
               outline-none py-1 my-50 mx-auto z-40 transition-all ease-in-out duration-500 "
           >
-            <div className="border-b border-b-[#394b65] ">
+            <div className="border-b border-[var(--border-main)] ">
               <button
                 onClick={() => SetDropIn("Year")}
-                className="border-2 ml-2 sm:ml-5 bg-[#1F2937] rounded-lg px-3 py-1 sm:mt-5 mt-1 cursor-pointer border-blue-500/20 hover:bg-[#3B82F6]"
+                className="border-2 font-medium ml-2 sm:ml-5 bg-[var(--primary-bg)] rounded-lg px-3 py-1 sm:mt-5 mt-1 cursor-pointer border-blue-500/20 hover:bg-[var(--click-btn)]"
               >
                 ← Back
               </button>
@@ -156,11 +159,11 @@ const MonthlyView = () => {
                   onClick={() => {
                     SetDropIn("Day"), setSelectedDay(d);
                   }}
-                  className="hover:bg-blue-400/10 border-2 border-blue-500/10 rounded-lg p-2 sm:p-3 box_Hover cursor-pointer"
+                  className="hover:bg-[var(--hover-drill)] border-2 border-blue-500/10 rounded-lg p-2 sm:p-3 box_Hover cursor-pointer"
                 >
                   <div className="flex justify-between  flex-wrap  ">
                     <div className="md:flex-1 flex-2 p-3 relative ">
-                      <span className="font-bold px-2 rounded text-blue-400">
+                      <span className="font-bold px-2 rounded text-[var(--click-btn)]">
                         {d.day}
                       </span>
                       <span className="text-bold absolute right-0 sm:right-7 md:left-25">
@@ -171,7 +174,7 @@ const MonthlyView = () => {
                     <div className="rounded-lg bg-[#374151] md:flex-1 w-full p-3 ">
                       <p className="text-[#c4c9d1] text-[0.9rem] font-medium text-center">
                         <span className="font-bold">Weekly-Total -</span>{" "}
-                        <span className="text-green-300">{`₹${d.total}.00`}</span>
+                        <span className="text-[#16A34A]">{`₹${d.total}.00`}</span>
                       </p>
                     </div>
                   </div>
@@ -187,13 +190,13 @@ const MonthlyView = () => {
       {dropin === "Day" && selectedDay && (
         <div className="fixed inset-0 backdrop-blur-sm">
           <div
-            className="w-[90%] xl:w-[50%] max-h-[60vh] bg-[#1F2937] border-2 border-blue-500/80 rounded-lg ring-2 ring-[#3B82F6]/10
+            className="w-[90%] xl:w-[50%] max-h-[60vh] bg-[var(--primary-bg)]  border-2 border-[var(--click-btn)] rounded-lg ring-2 ring-[#3B82F6]/10
               outline-none py-1 my-50 mx-auto z-40 transition-all ease-in-out duration-500 overflow-y-auto"
           >
-            <div className="border-b border-b-[#394b65] ">
+            <div className="border-b border-[var(--border-main)] ">
               <button
                 onClick={() => SetDropIn("Week")}
-                className="border-2 ml-2 sm:ml-5 bg-[#1F2937] rounded-lg px-3 py-1 sm:mt-5 mt-1 cursor-pointer border-blue-500/20 hover:bg-[#3B82F6]"
+                className="border-2 font-medium ml-2 sm:ml-5 bg-[var(--primary-bg)]  rounded-lg px-3 py-1 sm:mt-5 mt-1 cursor-pointer border-blue-500/20 hover:bg-[var(--click-btn)]"
               >
                 ← Back
               </button>
@@ -201,10 +204,10 @@ const MonthlyView = () => {
 
             {selectedDay.items.map((i) => (
               <div key={i.id} className="sm:p-4 p-3">
-                <div className="hover:bg-blue-400/10 border-2 border-blue-500/10 rounded-lg p-2 sm:p-3 box_Hover">
+                <div className="hover:bg-[var(--hover-drill)] border-2 border-blue-500/10 rounded-lg p-2 sm:p-3 box_Hover">
                   <div className="flex justify-between  flex-wrap  ">
                     <div className="md:flex-1 flex-2 p-3 relative ">
-                      <span className="font-bold px-2 rounded text-green-300">
+                      <span className="font-bold px-2 rounded text-[#16A34A]">
                         {`₹ ${i.amount}`}
                       </span>
                       <span className="text-bold absolute right-0 sm:right-7 md:left-25">

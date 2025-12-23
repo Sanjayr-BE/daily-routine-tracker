@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { CiLight } from "react-icons/ci";
+import { useContext, useState } from "react";
+import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ThemeContext } from "../theme/ThemeContext";
 
 const Header = () => {
+  const { toggleTheme,theme } = useContext(ThemeContext);
+
+  
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,7 +19,7 @@ const Header = () => {
   return (
     <>
       {/* Top Header */}
-      <div className="sticky top-0 bg-[#111827] border-b-2 border-[#1F2937]">
+      <div className="sticky top-0 bg-[var(--main-bg)] border-b border-[var(--border-main)]">
         <div>
           <div
             className="flex items-center justify-between 
@@ -27,28 +31,33 @@ const Header = () => {
             </div>
 
             <button
-              className="cursor-pointer border-2 border-[#3B82F6] p-2 rounded-lg 
-                       hover:bg-[#3B82F6] hover:text-white 
+              onClick={toggleTheme}
+              className="cursor-pointer border-2 border-[var(--click-btn)] p-2 rounded-lg 
+                       hover:bg-[var(--click-btn)] 
                        transition-all duration-300"
             >
-              <CiLight className="cursor-pointer size-5 hover:rotate-90 transition-transform duration-500" />
+
+              {
+                theme === "dark"? (<MdOutlineLightMode/>):(<MdOutlineDarkMode/>)
+              }
+
             </button>
           </div>
         </div>
       </div>
 
       {/* View Switch Buttons */}
-      <div className=" 2xl:w-4/5 mx-auto w-[94%] mt-4 border bg-[#1F2937]  border-[#394b65] rounded-lg">
+      <div className=" 2xl:w-4/5 mx-auto w-[94%] mt-4 bg-[var(--primary-bg)] border-2 border-[var(--border-main)] rounded-lg">
         <div>
           <div
-            className="border-2 border-[#1F2937] rounded-lg p-1 
+            className=" rounded-lg p-1 
                      flex gap-1"
           >
             <button
               onClick={() => navigate("/daily_view")}
-              className={`cursor-pointer flex-1
-              ${view === "Daily" ? "bg-[#3B82F6]" : " bg-transparent"}
-              text-white py-1 rounded-md
+              className={`cursor-pointer flex-1 font-medium
+              ${view === "Daily" ? "bg-[var(--click-btn)] text-white" : " bg-transparent"}
+               py-1 rounded-md
                        transition-all`}
             >
               Daily View
@@ -56,9 +65,9 @@ const Header = () => {
 
             <button
               onClick={() => navigate("/monthly_view")}
-              className={`cursor-pointer flex-1
-             ${view === "Monthly" ? "bg-[#3B82F6]" : " bg-transparent"}
-              text-white py-1 rounded-md
+              className={`cursor-pointer flex-1 font-medium
+             ${view === "Monthly" ? "bg-[var(--click-btn)] text-white" : " bg-transparent"}
+               py-1 rounded-md
                       transition-all`}
             >
               Monthly View
