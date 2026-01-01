@@ -4,9 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../theme/ThemeContext";
 
 const Header = () => {
-  const { toggleTheme,theme } = useContext(ThemeContext);
+  const { toggleTheme, theme } = useContext(ThemeContext);
 
-  
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -36,11 +35,11 @@ const Header = () => {
                        hover:bg-[var(--click-btn)] 
                        transition-all duration-300"
             >
-
-              {
-                theme === "dark"? (<MdOutlineLightMode/>):(<MdOutlineDarkMode/>)
-              }
-
+              {theme === "dark" ? (
+                <MdOutlineLightMode />
+              ) : (
+                <MdOutlineDarkMode />
+              )}
             </button>
           </div>
         </div>
@@ -56,7 +55,11 @@ const Header = () => {
             <button
               onClick={() => navigate("/daily_view")}
               className={`cursor-pointer flex-1 font-medium
-              ${view === "Daily" ? "bg-[var(--click-btn)] text-white" : " bg-transparent"}
+              ${
+                view === "Daily"
+                  ? "bg-[var(--click-btn)] text-white"
+                  : " bg-transparent"
+              }
                py-1 rounded-md
                        transition-all`}
             >
@@ -66,7 +69,11 @@ const Header = () => {
             <button
               onClick={() => navigate("/monthly_view")}
               className={`cursor-pointer flex-1 font-medium
-             ${view === "Monthly" ? "bg-[var(--click-btn)] text-white" : " bg-transparent"}
+             ${
+               view === "Monthly"
+                 ? "bg-[var(--click-btn)] text-white"
+                 : " bg-transparent"
+             }
                py-1 rounded-md
                       transition-all`}
             >
